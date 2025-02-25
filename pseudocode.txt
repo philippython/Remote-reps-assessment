@@ -1,0 +1,35 @@
+Data Structures:
+- Brand
+    - name: str
+    - monthly_budget: float
+    - daily_budget: float
+    - current_monthly_spend: float
+    - current_daily_spend: float
+    - campaigns: List[Campaign]
+
+- Campaign
+    - name: str
+    - is_active: bool
+    - spend_today: float
+    - dayparting_hours: List[(start_hour, end_hour)]
+
+- AdAgency
+    - brands: List[Brand]
+
+Key Steps:
+1. Track Daily and Monthly Spend:
+   - At the end of each ad spend update, check if a brand has exceeded its daily or monthly budget.
+
+2. Turn Off Campaigns When Budgets Are Reached:
+   - If a brand exceeds its daily budget, disable all its campaigns for the rest of the day.
+   - If a brand exceeds its monthly budget, disable all its campaigns for the rest of the month.
+
+3. Respect Dayparting:
+   - Check if the current time falls within allowed dayparting hours before enabling a campaign.
+
+4. Reset Budgets at the Start of a New Day/Month:
+   - At midnight, reset daily spend for all brands.
+   - On the first day of a new month, reset monthly spend for all brands.
+
+5. Re-enable Campaigns When Allowed:
+   - If the daily/monthly budget allows, campaigns can be turned back on.
