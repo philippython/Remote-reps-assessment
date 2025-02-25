@@ -1,7 +1,7 @@
 from datetime import datetime, time
 
 class Campaign:
-    def __init__(self, name, dayparting_hours=None):
+    def __init__(self, name: str, dayparting_hours=None):
         self.name = name
         self.is_active = True
         self.spend_today = 0.0
@@ -15,7 +15,7 @@ class Campaign:
         return any(start <= current_hour < end for start, end in self.dayparting_hours)
 
 class Brand:
-    def __init__(self, name, daily_budget, monthly_budget):
+    def __init__(self, name: str, daily_budget: float, monthly_budget: float):
         self.name = name
         self.daily_budget = daily_budget
         self.monthly_budget = monthly_budget
@@ -23,10 +23,10 @@ class Brand:
         self.current_monthly_spend = 0.0
         self.campaigns = []
 
-    def add_campaign(self, campaign):
+    def add_campaign(self, campaign: Campaign):
         self.campaigns.append(campaign)
 
-    def update_spend(self, amount):
+    def update_spend(self, amount: float):
         self.current_daily_spend += amount
         self.current_monthly_spend += amount
         
